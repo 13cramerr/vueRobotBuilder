@@ -2,7 +2,7 @@
   <div class="content">
     <button class="add-to-cart" @click="addToCart()">Add to Cart</button>
     <div class="top-row">
-      <div class="top part">
+      <div :class="[saleBorderClass, 'top', 'part']">
         <div class="robot-name">
           {{ selectedRobot.head.title }}
           <span class="sale" v-if="selectedRobot.head.onSale">Sale!</span>
@@ -91,6 +91,10 @@ export default {
         rightArm: availableParts.arms[this.selectedRightArmIndex],
         base: availableParts.bases[this.selectedBaseIndex],
       };
+    },
+
+    saleBorderClass() {
+      return this.selectedRobot.head.onSale ? 'sale-border' : '';
     },
   },
   methods: {
@@ -270,6 +274,10 @@ td, th {
 
 .cost {
   text-align: right;
+}
+
+.sale-border {
+  border: 3px solid red;
 }
 
 </style>
